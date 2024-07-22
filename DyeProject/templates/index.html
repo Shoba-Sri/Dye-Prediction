@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Form</title>
+  
+  <!-- Materialize CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <!-- Additional Custom CSS -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .background-image {
+      background-image: url('https://img.freepik.com/free-vector/abstract-watercolor-background_23-2149069668.jpg?size=626&ext=jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.27);
+    }
+    
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgb(9, 8, 8);
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      font-family: 'Baskerville';
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    
+    .prediction-button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #e79c0f;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="background-image">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Water Quality Analysis</h1>
+      <p>Artificial Neural Network Model to predict the dye contamination in water.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <form action="/predict" method="post" class="col s12">
+        <div class="row">            
+          <div class="input-field col s3">
+            <label><b>Concentration of H2O2</b></label> <br>
+            <input placeholder="Concentration of H2O2" id="h2o2_concentration" name="h2o2_concentration" type="text" class="validate">
+          </div>
+
+          <div class="input-field col s3">
+            <label><b>Dose of Gamma ray</b></label> <br>
+            <input id="gamma_ray_dose" name="gamma_ray_dose" placeholder="Gamma ray"  type="text" class="validate">
+          </div>
+
+          <div class="input-field col s3">
+            <label for="ph_value"><b>pH Value</b></label> <br>
+            <input id="ph_value" name="ph_value" placeholder="pH Value" type="text" class="validate">
+          </div>
+
+          <div class="input-field col s3">
+            <label for="dye_concentration"><b>Concentration of dye</b></label> <br>
+            <input placeholder="Concentration of dye" id="dye_concentration" name="dye_concentration" type="text" class="validate">
+          </div>
+        </div>
+
+        <div class="row center">
+          <button type="submit" class="btn-large waves-effect waves-light orange">Predict</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <h4 id="answer" class="center-align">
+    {% if prediction %}
+      Predicted Percentage: {{ prediction }}%
+    {% endif %}
+  </h4>
+  <br><br>
+
+  <!-- Add any necessary JavaScript libraries or scripts here -->
+
+</body>
+</html>
